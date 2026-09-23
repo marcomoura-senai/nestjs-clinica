@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Base",
+  "exclude": ["dist", "node_modules", "tests", "e2e"],
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    // Module resolution (e.g imports, exports behavior)
+    "target": "es2025",
+    "module": "nodenext",
+    "types": ["node"],
+    "esModuleInterop": true,
+    "moduleResolution": "node16",
+    "isolatedModules": true,
+    "resolvePackageJsonExports": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    // Compiler strictness
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    // Others
+    "sourceMap": true,
+    "incremental": true,
+    "skipLibCheck": true
+  }
+}
