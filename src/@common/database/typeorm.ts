@@ -1,0 +1,46 @@
+import 'dotenv/config'
+import { FactoryProvider } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { DataSource } from 'typeorm'
+
+import { SnakeCaseNamingStrategy } from './snake-case-naming-pattern'
+import { APIEnv } from '../../env'
+import { Role } from '../../role/role.entity'
+import { User } from '../../user/user.entity'
+
+export const ENTITIES = [Role, User]
+
+export const databaseProvider: FactoryProvider = {
+  provide: DataSource,
+  async useFactory(configService: ConfigService<APIEnv>) {
+    const AppDataSource = new DataSource({
+      type: 'postgres',
+      host: configService.getOrThrow('DB_HOST'),
+      port: Number(configService.getOrThrow('DB_PORT')),
+      username: configService.getOrThrow('DB_USER'),
+      password: configService.getOrThrow('DB_PASSWORD'),
+      database: configService.getOrThrow('DB_NAME'),
+      poolSize: 10,
+      /**
+       * Só da pra utilizar em ambiente de desenvolvimento
+       */
+      synchronize: configService.getOrThrow('DB_SYNCHRONIZE'),
+      /**
+       * export type LogLevel = "query" | "schema" | "error" | "warn" | "info" | "log" | "migration";
+       */
+      logging: configService.getOrThrow('DB_LOG_LEVEL'),
+      entities: ENTITIES,
+      namingStrategy: new SnakeCaseNamingStrategy(),
+      migrations: [__dirname + '/migrations/**/*{.js,.ts}'],
+      invalidWhereValuesBehavior: { undefined: 'ignore', null: 'sql-null' },
+    })
+
+    await AppDataSource.initialize()
+
+    await AppDataSource.runMigrations({
+      transaction: 'each',
+    })
+    return AppDataSource
+  },
+  inject: [ConfigService],
+}
