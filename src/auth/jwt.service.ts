@@ -43,7 +43,7 @@ export class JwtService {
     )
   }
 
-  verify(jwt: string): AuthUserDto {
+  verify(jwt: string): JwtPayload & { data: unknown } {
     const payload = verify(
       jwt,
       this.configService.getOrThrow('JWT_SECRET'),
@@ -67,6 +67,9 @@ export class JwtService {
       cipher.final(),
     ])
 
-    return JSON.parse(decipheredPayload.toString('utf-8')) as AuthUserDto
+    return {
+      ...payload,
+      data: JSON.parse(decipheredPayload.toString('utf-8')),
+    }
   }
 }

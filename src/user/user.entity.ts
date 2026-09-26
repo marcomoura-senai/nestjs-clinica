@@ -16,16 +16,13 @@ export class User {
   @PrimaryGeneratedColumn('identity', { generatedIdentity: 'ALWAYS' })
   id: number
 
-  @Column('uuid')
-  clinicId: string
-
   @Column('varchar', { length: 255 })
   name: string
 
-  @Column('varchar', { length: 255 })
+  @Column('varchar', { length: 255, unique: true })
   email: string
 
-  @Column('varchar', { length: 255 })
+  @Column('varchar', { length: 255, select: false })
   password: string
 
   @JoinTable()

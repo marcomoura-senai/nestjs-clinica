@@ -4,7 +4,6 @@ import {
   DeleteDateColumn,
   Entity,
   Index,
-  JoinTable,
   ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -12,12 +11,12 @@ import {
 
 import { User } from '../user/user.entity'
 
-export const Roles = {
+export const RoleName = {
   ADMIN: 'admin',
   USER: 'user',
-}
+} as const
 
-export type Roles = (typeof Roles)[keyof typeof Roles]
+export type RoleName = (typeof RoleName)[keyof typeof RoleName]
 
 @Entity()
 export class Role {
@@ -28,7 +27,6 @@ export class Role {
   @Column('varchar', { length: 255 })
   name: string
 
-  @JoinTable()
   @ManyToMany(() => User, (user: User) => user.roles)
   users: User[]
 

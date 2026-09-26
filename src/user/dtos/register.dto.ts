@@ -1,4 +1,6 @@
-import { IsEmail, IsString, IsStrongPassword } from 'class-validator'
+import { IsEmail, IsIn, IsString, IsStrongPassword } from 'class-validator'
+
+import { RoleName } from '../../role/role.entity'
 
 export class RegisterDto {
   @IsString()
@@ -9,4 +11,7 @@ export class RegisterDto {
 
   @IsStrongPassword()
   password: string
+
+  @IsIn(Object.values(RoleName), { each: true })
+  roles: RoleName[] = [RoleName.USER]
 }
