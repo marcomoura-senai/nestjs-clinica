@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 
@@ -10,6 +11,13 @@ async function bootstrap() {
   const configService: ConfigService<APIEnv> = app.get(ConfigService)
 
   const port = configService.getOrThrow<number>('PORT')
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      transform: true,
+    }),
+  )
 
   await app.listen(port)
   console.log(`Listening on port ${port.toString()}`)

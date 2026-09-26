@@ -21,6 +21,7 @@
     "resolveJsonModule": true,
     // Compiler strictness
     "strict": true,
+    "strictPropertyInitialization": false,
     "forceConsistentCasingInFileNames": true,
     // Others
     "sourceMap": true,
