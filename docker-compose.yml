@@ -1,0 +1,16 @@
+name: nestjs-clinica-db
+services:
+  database:
+    image: postgres:18-alpine
+    container_name: pg
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: nestjs-clinica
+    ports:
+      - "5432:5432" # nosso:container 
+    volumes:
+      - pgdata:/var/lib/postgresql/18/data # nome:caminho
+
+volumes:
+  pgdata:
