@@ -3,6 +3,9 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,4 +24,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: nestjs-clinic:${{ github.sha }}
+          tags: senai/nestjs-clinic:${{ github.sha }}
