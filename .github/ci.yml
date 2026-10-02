@@ -1,5 +1,4 @@
 name: Build
-#  Quando executa
 on:
   push:
     branches: [main]
