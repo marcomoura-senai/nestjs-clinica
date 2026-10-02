@@ -5,6 +5,7 @@ on:
 
 permissions:
   contents: read
+  packages: write # Write access to the package registry
 
 jobs:
   build:
