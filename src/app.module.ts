@@ -6,6 +6,7 @@ import { DatabaseModule } from './@common/database/database.module'
 import { AuthModule } from './auth/auth.module'
 import { JwtGuard } from './auth/jwt.guard'
 import { validateEnv } from './env'
+import { HealthController } from './health.controller'
 import { UserModule } from './user/user.module'
 
 @Module({
@@ -18,6 +19,7 @@ import { UserModule } from './user/user.module'
     UserModule,
     AuthModule,
   ],
+  controllers: [HealthController],
   providers: [
     {
       provide: APP_GUARD,

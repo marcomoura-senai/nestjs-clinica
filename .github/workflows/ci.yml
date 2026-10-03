@@ -27,3 +27,6 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/${{github.repository}}:${{ github.sha }}
+      
+      - name: Trigger deploy
+        run: curl --data-urlencode "imgURL=ghcr.io/${{github.repository}}:${{ github.sha }}" "${{ secrets.RENDER_DEPLOY_URL }}"
