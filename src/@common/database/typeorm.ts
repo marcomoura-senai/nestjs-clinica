@@ -15,6 +15,7 @@ export const databaseProvider: FactoryProvider = {
   async useFactory(configService: ConfigService<APIEnv>) {
     const AppDataSource = new DataSource({
       type: 'postgres',
+      ssl: configService.getOrThrow('DB_SSL'),
       host: configService.getOrThrow('DB_HOST'),
       port: Number(configService.getOrThrow('DB_PORT')),
       username: configService.getOrThrow('DB_USER'),

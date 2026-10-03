@@ -49,6 +49,10 @@ export class APIEnv {
   @IsIn(LOG_LEVELS)
   DB_LOG_LEVEL: LogLevel = 'error'
 
+  @Transform(({ value }) => value === 'true')
+  @IsBoolean()
+  DB_SSL = false
+
   @IsString()
   JWT_SECRET!: string
 
