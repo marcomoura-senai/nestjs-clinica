@@ -1258,7 +1258,7 @@ Resposta **200**, envelope de listagem, em ordem decrescente de `createdAt`.
 | `POST` | `/doctors` | `admin` |
 | `GET` | `/doctors` | autenticado |
 | `GET` | `/doctors/{id}` | autenticado |
-| `PUT` | `/doctors/{id}/work-schedule` | `admin` |
+| `PUT` | `/doctors/{id}/work-schedule` | `admin`, `doctor` |
 | `GET` | `/doctors/{id}/work-schedule` | autenticado |
 | `GET` | `/doctors/{id}/calendar` | autenticado |
 | `POST` | `/appointments` | `admin`, `secretary` |
