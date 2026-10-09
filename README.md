@@ -749,7 +749,7 @@ Exemplos: `feat/paciente`, `feat/medico`, `feat/escala`, `feat/agendamento`, `fe
 
 **Commits**
 
-Mínimo de **20 commits** com conteúdo real, distribuídos ao longo do desenvolvimento. Commits apenas de criação do projeto ou de alteração do README não entram na conta. Mensagens no imperativo, descrevendo o que a alteração faz:
+Mínimo de **10 commits** com conteúdo real, distribuídos ao longo do desenvolvimento. Commits apenas de criação do projeto ou de alteração do README não entram na conta. Mensagens no imperativo, descrevendo o que a alteração faz:
 
 ```
 feat: cria entidade e migration de paciente
@@ -770,7 +770,7 @@ docs: documenta variaveis de ambiente e endpoints
 
 **Pull requests**
 
-Mínimo de **6 pull requests** fechados na `main`, cada um com o check de validação verde. O pull request precisa de um título que diga o que ele entrega e de uma descrição de uma ou duas linhas.
+Mínimo de **3 pull requests** fechados na `main`, cada um com o check de validação verde. O pull request precisa de um título que diga o que ele entrega e de uma descrição de uma ou duas linhas.
 
 ---
 
@@ -1183,8 +1183,6 @@ Resposta **200** com o agendamento atualizado.
 | `scheduled` | `cancelled` | `admin`, `secretary`, ou o `doctor` do agendamento |
 | `in_progress` | `done` | o `doctor` do agendamento, ou `admin` |
 | `in_progress` | `cancelled` | `admin`, ou o `doctor` do agendamento |
-| `done` | qualquer | ninguém |
-| `cancelled` | qualquer | ninguém |
 
 | Situação | Status | `error` |
 | :---- | :---- | :---- |
