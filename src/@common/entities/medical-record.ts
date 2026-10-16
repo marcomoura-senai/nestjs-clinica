@@ -1,4 +1,10 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
 
 import { Patient } from './patient'
 
@@ -10,9 +16,10 @@ export class MedicalRecord {
   @Column('text')
   text: string
 
-  @Column('number')
+  @Column('bigint')
   patientId: number
 
+  @JoinColumn({ name: 'patient_id' })
   @OneToOne(() => Patient)
   patient: Patient
 }

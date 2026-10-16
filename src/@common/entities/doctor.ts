@@ -1,4 +1,10 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
 
 import { User } from '../../user/user.entity'
 
@@ -13,6 +19,7 @@ export class Doctor {
   @Column('number')
   userId: number
 
+  @JoinColumn({ name: 'user_id' })
   @OneToOne(() => User)
   user: User
 }

@@ -1,4 +1,4 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 export const APPOINTMENT_STATUS = {
   scheduled: 'scheduled',
@@ -9,26 +9,21 @@ export const APPOINTMENT_STATUS = {
 export type APPOINTMENT_STATUS =
   (typeof APPOINTMENT_STATUS)[keyof typeof APPOINTMENT_STATUS]
 
-// TODO: Considerar só dia e hora e levar em consideração a duração
-@Index('appointment_scheduled', ['doctorId', 'date'], {
-  unique: true,
-  where: `status = '${APPOINTMENT_STATUS.scheduled}'`,
-})
 @Entity()
 export class Appointment {
   @PrimaryGeneratedColumn('identity', { generatedIdentity: 'ALWAYS' })
   id: number
 
-  @Column('number')
+  @Column('bigint')
   patientId: number
 
-  @Column('number')
+  @Column('bigint')
   doctorId: number
 
   @Column('timestamptz')
   date: Date
 
-  @Column('number')
+  @Column('integer')
   duration: number
 
   @Column('enum', {

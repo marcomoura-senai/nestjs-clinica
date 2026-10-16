@@ -1,9 +1,15 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
 
 import { Doctor } from './doctor'
 
 class WorkScheduleConfiguration {
-  weekDay: string // Mon, Tue, Wed, Thu, Fri, Sat, Sun
+  weekDay: number // 0-6
 
   duration: number // in minutes
 
@@ -24,6 +30,7 @@ export class WorkSchedule {
   @Column('jsonb')
   configuration: WorkScheduleConfiguration[]
 
+  @JoinColumn({ name: 'doctor_id' })
   @OneToOne(() => Doctor)
   doctor: Doctor
 }

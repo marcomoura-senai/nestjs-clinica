@@ -7,8 +7,21 @@ import { SnakeCaseNamingStrategy } from './snake-case-naming-pattern'
 import { APIEnv } from '../../env'
 import { Role } from '../../role/role.entity'
 import { User } from '../../user/user.entity'
+import { Appointment } from '../entities/appointment'
+import { Doctor } from '../entities/doctor'
+import { MedicalRecord } from '../entities/medical-record'
+import { Patient } from '../entities/patient'
+import { WorkSchedule } from '../entities/work-schedule'
 
-export const ENTITIES = [Role, User]
+export const ENTITIES = [
+  Role,
+  User,
+  Appointment,
+  Doctor,
+  MedicalRecord,
+  Patient,
+  WorkSchedule,
+]
 
 export const databaseProvider: FactoryProvider = {
   provide: DataSource,
