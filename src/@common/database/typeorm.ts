@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { FactoryProvider } from '@nestjs/common'
+import { FactoryProvider, Type } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { DataSource } from 'typeorm'
 
@@ -57,4 +57,18 @@ export const databaseProvider: FactoryProvider = {
     return AppDataSource
   },
   inject: [ConfigService],
+}
+
+export function typeOrmRepositoryFactory<T, U>(
+  repositoryCls: Type<T>,
+  entityClass: Type<U>,
+): FactoryProvider<T> {
+  return {
+    provide: repositoryCls,
+    useFactory(dataSource: DataSource) {
+      const repo = new repositoryCls(entityClass, dataSource.manager)
+      return repo
+    },
+    inject: [DataSource],
+  }
 }

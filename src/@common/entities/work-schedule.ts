@@ -8,7 +8,7 @@ import {
 
 import { Doctor } from './doctor'
 
-class WorkScheduleConfiguration {
+export class WorkScheduleConfiguration {
   weekDay: number // 0-6
 
   duration: number // in minutes

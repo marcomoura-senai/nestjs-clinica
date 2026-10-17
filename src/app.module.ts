@@ -5,6 +5,7 @@ import { APP_GUARD } from '@nestjs/core'
 import { DatabaseModule } from './@common/database/database.module'
 import { AuthModule } from './auth/auth.module'
 import { JwtGuard } from './auth/jwt.guard'
+import { DoctorModule } from './doctor/doctor.module'
 import { validateEnv } from './env'
 import { HealthController } from './health.controller'
 import { UserModule } from './user/user.module'
@@ -18,6 +19,7 @@ import { UserModule } from './user/user.module'
     DatabaseModule,
     UserModule,
     AuthModule,
+    DoctorModule,
   ],
   controllers: [HealthController],
   providers: [
