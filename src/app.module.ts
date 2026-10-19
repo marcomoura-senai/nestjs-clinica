@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { APP_GUARD } from '@nestjs/core'
+import { APP_FILTER, APP_GUARD } from '@nestjs/core'
 
 import { DatabaseModule } from './@common/database/database.module'
+import { AllHttpExceptionFilter } from './@common/filters/all-http-exception.filter'
 import { AuthModule } from './auth/auth.module'
 import { JwtGuard } from './auth/jwt.guard'
 import { DoctorModule } from './doctor/doctor.module'
@@ -26,6 +27,10 @@ import { UserModule } from './user/user.module'
     {
       provide: APP_GUARD,
       useClass: JwtGuard,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: AllHttpExceptionFilter,
     },
   ],
 })
