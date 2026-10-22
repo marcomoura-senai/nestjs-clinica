@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm'
 
+import { WorkSchedule } from './work-schedule'
 import { User } from '../../user/user.entity'
 
 @Entity()
@@ -22,4 +23,7 @@ export class Doctor {
   @JoinColumn({ name: 'user_id' })
   @OneToOne(() => User)
   user: User
+
+  @OneToOne(() => WorkSchedule, (workSchedule) => workSchedule.doctor)
+  workSchedule: WorkSchedule
 }

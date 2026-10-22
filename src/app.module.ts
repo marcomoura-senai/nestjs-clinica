@@ -4,6 +4,7 @@ import { APP_FILTER, APP_GUARD } from '@nestjs/core'
 
 import { DatabaseModule } from './@common/database/database.module'
 import { AllHttpExceptionFilter } from './@common/filters/all-http-exception.filter'
+import { AppointmentModule } from './appointment/appointment.module'
 import { AuthModule } from './auth/auth.module'
 import { JwtGuard } from './auth/jwt.guard'
 import { DoctorModule } from './doctor/doctor.module'
@@ -21,6 +22,7 @@ import { UserModule } from './user/user.module'
     UserModule,
     AuthModule,
     DoctorModule,
+    AppointmentModule,
   ],
   controllers: [HealthController],
   providers: [

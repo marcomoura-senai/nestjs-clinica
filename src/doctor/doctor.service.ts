@@ -1,15 +1,10 @@
 import { Injectable } from '@nestjs/common'
 
 import { CreateWorkScheduleDto } from './dto/create-work-schedule.dto'
+import { toAbsoluteDayMinutes } from './utils/utils'
 import { WorkScheduleRepository } from './work-schedule.repository'
 import { WorkScheduleConfiguration } from '../@common/entities/work-schedule'
 import { DomainError, ERROR_CODE } from '../@common/errors/domain.error'
-
-function toAbsoluteDayMinutes(timeString: string): number {
-  const [hour, minute] = timeString.split(':').map(Number)
-
-  return hour * 60 + minute
-}
 
 @Injectable()
 export class DoctorService {
