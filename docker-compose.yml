@@ -11,6 +11,11 @@ services:
       - "5432:5432" # nosso:container 
     volumes:
       - pgdata:/var/lib/postgresql/18/data # nome:caminho
+    networks:
+      - clinica_db_net
+
+networks:
+  clinica_db_net:
 
 volumes:
   pgdata:

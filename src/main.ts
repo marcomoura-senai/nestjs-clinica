@@ -19,6 +19,8 @@ async function bootstrap() {
     }),
   )
 
+  app.setGlobalPrefix('api/v1')
+
   await app.listen(port)
   console.log(`Listening on port ${port.toString()}`)
 }

@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { FactoryProvider } from '@nestjs/common'
+import { FactoryProvider, Type } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { DataSource } from 'typeorm'
 
@@ -7,8 +7,21 @@ import { SnakeCaseNamingStrategy } from './snake-case-naming-pattern'
 import { APIEnv } from '../../env'
 import { Role } from '../../role/role.entity'
 import { User } from '../../user/user.entity'
+import { Appointment } from '../entities/appointment'
+import { Doctor } from '../entities/doctor'
+import { MedicalRecord } from '../entities/medical-record'
+import { Patient } from '../entities/patient'
+import { WorkSchedule } from '../entities/work-schedule'
 
-export const ENTITIES = [Role, User]
+export const ENTITIES = [
+  Role,
+  User,
+  Appointment,
+  Doctor,
+  MedicalRecord,
+  Patient,
+  WorkSchedule,
+]
 
 export const databaseProvider: FactoryProvider = {
   provide: DataSource,
@@ -44,4 +57,18 @@ export const databaseProvider: FactoryProvider = {
     return AppDataSource
   },
   inject: [ConfigService],
+}
+
+export function typeOrmRepositoryFactory<T, U>(
+  repositoryCls: Type<T>,
+  entityClass: Type<U>,
+): FactoryProvider<T> {
+  return {
+    provide: repositoryCls,
+    useFactory(dataSource: DataSource) {
+      const repo = new repositoryCls(entityClass, dataSource.manager)
+      return repo
+    },
+    inject: [DataSource],
+  }
 }

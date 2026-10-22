@@ -10,3 +10,9 @@ services:
     # No linux é necessário adicionar o host.internal
     extra_hosts:
       - 'host.docker.internal:host-gateway'
+    networks:
+      - clinica_db_net
+
+networks:
+  clinica_db_net:
+    external: true

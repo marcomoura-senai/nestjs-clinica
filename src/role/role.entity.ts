@@ -14,6 +14,8 @@ import { User } from '../user/user.entity'
 export const RoleName = {
   ADMIN: 'admin',
   USER: 'user',
+  DOCTOR: 'doctor',
+  SECRETARY: 'secretary',
 } as const
 
 export type RoleName = (typeof RoleName)[keyof typeof RoleName]
