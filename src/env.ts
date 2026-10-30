@@ -19,6 +19,9 @@ export function validateEnv(config: unknown) {
   return apiEnv
 }
 export class APIEnv {
+  @IsString()
+  APP_VERSION!: string
+
   @Type(() => Number)
   @IsNumber()
   PORT!: number

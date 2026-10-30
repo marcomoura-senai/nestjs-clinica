@@ -19,6 +19,10 @@ RUN npm run build
 
 FROM node:26-alpine AS runner
 
+ARG GIT_SHA
+RUN test -n "$GIT_SHA" || (echo "ERROR: GIT_SHA argument is required --build-arg GIT_SHA=<sha>" >&2 && exit 1)
+ENV APP_VERSION=$GIT_SHA
+
 WORKDIR /app
 
 COPY --from=builder /app/dist ./dist
